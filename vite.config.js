@@ -6,10 +6,9 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api/notes': {
-        target: 'http://localhost:3001/notes',
+      '/api': {
+        target: 'http://localhost:3001',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api\/notes/, '')
       }
     }
   }

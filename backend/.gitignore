@@ -1,0 +1,4 @@
+node_modules/
+.env
+*.log
+# No ignorar dist/ - necesario para servir el frontend en producción

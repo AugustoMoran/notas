@@ -14,13 +14,17 @@ const App = () => {
     noteService
       .getAll()
       .then(response => {
-        setNotes(response.data)
+        const notesData = response.data || response || []
+        setNotes(Array.isArray(notesData) ? notesData : [])
+      })
+      .catch(error => {
+        console.error('Error fetching notes:', error)
       })
   }, [])
 
-  const notesToShow = showAll
-    ? notes
-    : notes.filter(note => note.important === true)
+  const notesToShow = Array.isArray(notes) 
+    ? (showAll ? notes : notes.filter(note => note.important === true))
+    : []
 
   const addNote = (event) => {
     event.preventDefault()
@@ -32,13 +36,15 @@ const App = () => {
     noteService
       .create(noteObject)
       .then(response => {
-        setNotes(notes.concat(response.data))
+        setNotes(notes.concat(response.data || response))
         setNewNote('')
+      })
+      .catch(error => {
+        console.error('Error creating note:', error)
       })
   }
 
   const handleNoteChange = (event) => {
-    console.log(event.target.value)
     setNewNote(event.target.value)
   }
 
@@ -49,7 +55,7 @@ const App = () => {
     noteService
       .update(id, changedNote)
       .then(response => {
-        setNotes(notes.map(n => n.id !== id ? n : response.data))
+        setNotes(notes.map(n => n.id !== id ? n : (response.data || response)))
       })
       .catch(error => {
         alert(`The note was already deleted from server`)

@@ -1,0 +1,71 @@
+### Variables
+@baseUrl = http://localhost:3001/api
+@noteId = 
+
+### GET - Obtener todas las notas
+GET {{baseUrl}}/notes
+
+### POST - Crear nota 1
+POST {{baseUrl}}/notes
+Content-Type: application/json
+
+{
+  "content": "HTML is easy",
+  "important": true
+}
+
+### POST - Crear nota 2
+POST {{baseUrl}}/notes
+Content-Type: application/json
+
+{
+  "content": "Browser can execute only JavaScript",
+  "important": false
+}
+
+### POST - Crear nota 3
+POST {{baseUrl}}/notes
+Content-Type: application/json
+
+{
+  "content": "GET and POST are the most important methods of HTTP protocol",
+  "important": true
+}
+
+### POST - Crear nota 4
+POST {{baseUrl}}/notes
+Content-Type: application/json
+
+{
+  "content": "Learning React is fun",
+  "important": false
+}
+
+### POST - Crear nota 5
+POST {{baseUrl}}/notes
+Content-Type: application/json
+
+{
+  "content": "MongoDB is a NoSQL database",
+  "important": true
+}
+
+### PUT - Actualizar nota (reemplaza noteId arriba con un ID real)
+PUT {{baseUrl}}/notes/{{noteId}}
+Content-Type: application/json
+
+{
+  "content": "HTML is very easy - UPDATED",
+  "important": false
+}
+
+### DELETE - Eliminar nota (reemplaza noteId arriba con un ID real)
+DELETE {{baseUrl}}/notes/{{noteId}}
+
+### POST - Crear nota sin content (debe fallar)
+POST {{baseUrl}}/notes
+Content-Type: application/json
+
+{
+  "important": true
+}
